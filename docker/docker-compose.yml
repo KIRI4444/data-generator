@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: data-generator-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: data_generator_db
+      POSTGRES_USER: data_generator_user
+      POSTGRES_PASSWORD: data_generator_password
+    volumes:
+      - data_generator_pg_data:/var/lib/postgresql/data
+
+volumes:
+  data_generator_pg_data:
