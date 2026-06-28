@@ -215,6 +215,10 @@ public class DataGenerationServiceImpl implements DataGenerationService {
     private Object generateUniqueValue(DataColumn column, int rowIndex) {
         GeneratorType generatorType = column.getGeneratorType();
 
+        if (GeneratorType.CUSTOM_TEMPLATE.equals(generatorType)) {
+            return generateFromTemplate(column);
+        }
+
         if (GeneratorType.EMAIL.equals(generatorType)) {
             return "user_" + (rowIndex + 1) + "_" + randomString(6).toLowerCase() + "@example.com";
         }
